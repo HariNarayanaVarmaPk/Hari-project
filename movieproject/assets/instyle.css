@@ -1,0 +1,22 @@
+.container{
+    text-align: center;
+    background-image: url('titanic.jpg');
+    background-size: cover; 
+    background-position: center;
+    height: 20vh;
+    width: 20vh;
+    color: white;
+    padding: 20px; 
+
+ } 
+h1{
+    color:rgb(0, 0, 0);
+}
+button{
+    color:cadetblue;
+    background-color: rgb(239, 191, 191);
+    margin-bottom:120px;
+}
+button:hover{
+    box-shadow: 0 0 20px chocolate;
+}

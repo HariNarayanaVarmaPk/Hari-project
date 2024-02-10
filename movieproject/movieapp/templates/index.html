@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container" style="text-align: center;height: 20vh;
+width: 20vh;
+color: white;
+padding: 20px; ">
+
+    <div class="row">
+        {% for i in movie_list %}
+        <div class="col-md-12">
+            <div class="card" style="width: 18rem; margin-bottom: 100px;">
+                <img class="card-img-top" src="{{ i.img.url }}" alt="Card image cap" height="250">
+                <div class="card-body">
+                  <h5 class="card-title" style="color: black;">{{ i.name }}</h5>
+                  <p class="card-text" style="color: black;">{{ i.desc }}<br> {{i.year}}</p>
+                  <a href="{% url 'movieapp:detail' i.id %}" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
