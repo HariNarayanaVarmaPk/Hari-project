@@ -9,11 +9,12 @@
 <!--    <link rel="stylesheet" href="{% static 'instyle.css' %}">-->
 </head>
 <body>
-           <!-- Image and text -->
+          
 <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="#">
     Online Movie Store
     </a>
+      <a class="btn btn-primary" href="{% url 'movieapp:add_movie' %}">Add Movie</a>
   </nav>
   {% block body %}
   {% endblock %}

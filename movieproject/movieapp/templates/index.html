@@ -1,23 +1,26 @@
 {% extends 'base.html' %}
 {% block body %}
-<div class="container" style="text-align: center;height: 20vh;
-width: 20vh;
-color: white;
-padding: 20px; ">
+<div class="container" style="text-align: center; padding-top: 20px;">
 
     <div class="row">
         {% for i in movie_list %}
-        <div class="col-md-12">
-            <div class="card" style="width: 18rem; margin-bottom: 100px;">
+        <div class="col-md-3">
+            <div class="card mb-4" style="width: 18rem;">
                 <img class="card-img-top" src="{{ i.img.url }}" alt="Card image cap" height="250">
                 <div class="card-body">
-                  <h5 class="card-title" style="color: black;">{{ i.name }}</h5>
-                  <p class="card-text" style="color: black;">{{ i.desc }}<br> {{i.year}}</p>
-                  <a href="{% url 'movieapp:detail' i.id %}" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">{{ i.name }}</h5>
+                    <p class="card-text">{{ i.desc }}<br> {{ i.year }}</p>
+                    <a href="{% url 'movieapp:detail' i.id %}" class="btn btn-primary">Go somewhere</a>
                 </div>
-              </div>
+            </div>
         </div>
+        {% if forloop.counter|divisibleby:4 and not forloop.last %}
+    </div>
+    <div class="row">
+        {% endif %}
         {% endfor %}
     </div>
+
 </div>
 {% endblock %}
+
