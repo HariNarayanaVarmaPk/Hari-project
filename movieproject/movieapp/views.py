@@ -28,6 +28,7 @@ def add_movie(request):
 
         movie = Movie(name=name, desc=desc, year=year, img=img)
         movie.save()
+        return redirect('/')
 
     return render(request, 'add.html')
 
