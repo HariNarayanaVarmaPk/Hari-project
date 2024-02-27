@@ -45,7 +45,7 @@ This is the cart page.Proceed to review your items and place the order
             {% for cart_item in cart_items %}
             <tr>
                 <td>
-                    <a href="{{cart_item.product.get_url}}"><img src="{{cart_item.product.image.url}}" alt="" style="width:150px;height:150px;" class="float-left rounded custom_image"></a>
+                    <a href="{{cart_item.product.get_dfgurl}}"><img src="{{cart_item.product.image.url}}" alt="" style="width:150px;height:150px;" class="float-left rounded custom_image"></a>
                 </td>
                 <td class="text-left">
                     {{cart_item.product.name}}
