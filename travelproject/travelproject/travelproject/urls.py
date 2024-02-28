@@ -28,6 +28,7 @@ urlpatterns = [
     path('credentials/', include('credentials.urls')),
     path('register/',views.register,name='register'),
     path('login/',views.login,name='login'),
+    path('logout',views.logout,name='logout'),
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.STATIC_URL,

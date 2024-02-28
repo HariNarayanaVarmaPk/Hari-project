@@ -49,3 +49,7 @@ def register(request):
             return redirect('register')
         return redirect('/')
     return render(request,"register.html")
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')

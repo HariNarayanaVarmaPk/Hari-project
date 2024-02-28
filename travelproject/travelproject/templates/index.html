@@ -60,11 +60,11 @@ https://templatemo.com/tm-589-lugx-gaming
                       <!-- <li><a href="index.html" class="active">Home</a></li> -->
                       {% if request.user.is_authenticated %}
                          <p>Hello, <strong>{{ request.user.username }}</strong></p>
+                         <li><a href="{% url 'logout' %}">Logout</a></li>
                       {% else %}
                          <li><a href="{% url 'login' %}">Login</a></li>
                       {% endif %}
                       <li><a href="{% url 'register' %}">Register</a></li>
-                      <!-- <li><a href="contact.html">Contact Us</a></li> -->
                       <!-- <li><a href="#">Sign In</a></li> -->
                   </ul>   
                     <a class='menu-trigger'>
