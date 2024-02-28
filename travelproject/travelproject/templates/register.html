@@ -9,7 +9,7 @@
 <body>
 <div class="container">
 <h2>Registration</h2>
-<form action="register" method="post">
+<form action="{% url 'register' %}" method="post">
 	{% csrf_token %}
   <input type="text" name="Username" placeholder="Enter your Username"><br>
   <input type="text" name="First_name" placeholder="Enter your first name"> <br>

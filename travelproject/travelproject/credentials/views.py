@@ -1,6 +1,22 @@
-from django.contrib import messages
+from django.contrib import messages,auth
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+
+
+def login(request):
+    if request.method=='POST':
+        username=request.POST['Username']
+        password=request.POST['Password']
+        user=auth.authenticate(username=username,password=password)
+
+        if user is not None:
+            auth.login(request,user)
+            return redirect('/')
+        else:
+            messages.info(request,'invalid credentails')
+            return redirect('login')
+    return render(request,'login.html')
+    
 
 
 def register(request):
@@ -23,7 +39,7 @@ def register(request):
                 user=User.objects.create_user(username=username,password=password,email=email,first_name=first_name,last_name=last_name)
 
             user.save();
-            print('user created')
+            return redirect('login')
 
         else:
             messages.info(request,"Password not matching")
