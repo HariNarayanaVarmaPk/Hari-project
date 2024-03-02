@@ -5,11 +5,11 @@ from django.conf import settings
 
 
 urlpatterns = [
+    path('', views.view, name='view'),
     path('register/', views.register, name='register'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('add/', views.add, name='add'),
-    path('view/', views.view, name='view'),
     path('profile/view', views.view_profile, name='view_profile'),
     path('profile/edit', views.edit_profile, name='edit_profile'),
     path('cinema/update/<int:pk>/', views.update_cinema, name='update_cinema'), # type: ignore

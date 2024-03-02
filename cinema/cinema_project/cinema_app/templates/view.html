@@ -34,6 +34,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'add' %}" style="color:blue">Add Cinema</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}" style="color:green">Register</a>
+                </li>
                 <!-- Logout button if authenticated -->
                 {% if user.is_authenticated %}
                 <li class="nav-item">
