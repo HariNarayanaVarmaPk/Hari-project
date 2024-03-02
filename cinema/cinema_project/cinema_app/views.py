@@ -1,9 +1,7 @@
-import os
 from django.contrib import messages
 from django.contrib.auth.forms import  AuthenticationForm
 from django.contrib.auth import login as auth_login
 from django .contrib.auth import logout as auth_logout
-from django.http import  HttpResponseNotAllowed
 from django.shortcuts import render, redirect,get_object_or_404
 from .forms import CinemaForm
 from django.contrib.auth.models import User
@@ -110,8 +108,10 @@ def view(request):
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    
+    categories = Cinema.objects.values_list('category', flat=True).distinct()
 
-    return render(request, 'view.html', {'cinemas': page_obj})
+    return render(request, 'view.html', {'cinemas': page_obj ,'categories': categories})
 
 
 
@@ -161,7 +161,6 @@ def rate_movie(request, cinema_id):
     if request.method == 'POST':
         return redirect('view')
     return render(request, 'rate_movie.html', {'cinema': cinema})
-
 
 
 

@@ -37,19 +37,27 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'register' %}" style="color:green">Register</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}" style="color:orange">Login</a>
-                </li>
                 <!-- Logout button if authenticated -->
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}" style="color:red">Logout</a>
                 </li>
                 {% endif %}
-                <!-- Search Form -->
+                <!-- Search Form with Dropdown -->
                 <li class="nav-item">
                     <form class="form-inline my-2 my-lg-0" action="{% url 'search_by_category' %}" method="GET">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Enter category" aria-label="Search" name="category">
+                        <!-- Category Dropdown -->
+                        <div class="form-group mr-2">
+                            <select class="form-control" name="category">
+                                <option value="">All Categories</option>
+                                {% for category in categories %}
+                                    <option value="{{ category }}">{{ category }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <!-- Hidden Input for Category -->
+                        <input type="hidden" name="search" value="true">
+                        <!-- Submit Button -->
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </li>
@@ -68,68 +76,69 @@
     </div>
     {% endif %}
 
-    
-   <!-- Main Content -->
-<div class="container">
-    <!-- Heading -->
-    <div class="row">
-        <div class="col-12">
-            <h1>Cinema View</h1>
-        </div>
-    </div>
-    <!-- Cinemas Display -->
-    <div class="row">
-        {% for cinema in cinemas %}
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <!-- Cinema Image -->
-                <img src="{{ cinema.poster.url }}" class="card-img-top" alt="{{ cinema.title }} Poster">
-                <div class="card-body">
-                    <!-- Cinema Title -->
-                    <h5 class="card-title">{{ cinema.title }}</h5>
-                    <!-- Cinema Details -->
-                    <p class="card-text"><strong>Description:</strong> {{ cinema.description }}</p>
-                    <p class="card-text"><strong>Release Date:</strong> {{ cinema.release_date }}</p>
-                    <p class="card-text"><strong>Actors:</strong> {{ cinema.actors }}</p>
-                    <p class="card-text"><strong>Category:</strong> {{ cinema.category }}</p>
-                    <!-- Watch Trailer Button -->
-                    <a href="{{ cinema.trailer_link }}" class="btn btn-primary">Watch Trailer</a>
-                    <!-- Rate and Comment Buttons -->
-                    <div class="mt-2">
-                        <a href="{% url 'rate_movie' cinema.id %}" class="btn btn-info">Rate</a>
-                        <a href="{% url 'comment_movie' cinema.id %}" class="btn btn-secondary">Comment</a>
-                    </div>
-                </div>
-                <!-- Footer - Added By and Created At -->
-                <div class="card-footer">
-                    <small class="text-muted"><strong>Added By:</strong> {{ cinema.added_by }}</small>
-                    <small class="text-muted"><strong>Created At:</strong> {{ cinema.created_at }}</small>
-                    <!-- Action Buttons - Update and Delete -->
-                    {% if user.is_authenticated and user == cinema.added_by %}
-                    <div class="action-buttons mt-2">
-                        <form action="{% url 'update_cinema' cinema.id %}" method="GET" style="display: inline-block; margin-right: 10px;">
-                            <button class='btn btn-warning' type="submit">Update</button>
-                        </form>
-                        <form action="{% url 'delete_cinema' cinema.id %}" method="GET" style="display: inline-block;">
-                            {% csrf_token %}
-                            <button class='btn btn-danger' type="submit">Delete</button>
-                        </form>
-                    </div>
-                    {% endif %}
-                </div>
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Heading -->
+        <div class="row">
+            <div class="col-12">
+                <h1>Cinema View</h1>
             </div>
         </div>
-        {% endfor %}
-    </div>
-    <!-- Navigation buttons -->
-    <div class="row">
-        <div class="col-12 text-center mt-3">
-            {% if cinemas.has_previous %}
-            <a href="?page={{ cinemas.previous_page_number }}" class="btn btn-secondary mr-2">Previous</a>
-            {% endif %}
-            {% if cinemas.has_next %}
-            <a href="?page={{ cinemas.next_page_number }}" class="btn btn-secondary">Next</a>
-            {% endif %}
+        <!-- Cinemas Display -->
+        <div class="row">
+            {% for cinema in cinemas %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <!-- Cinema Image -->
+                    <img src="{{ cinema.poster.url }}" class="card-img-top" alt="{{ cinema.title }} Poster">
+                    <div class="card-body">
+                        <!-- Cinema Title -->
+                        <h5 class="card-title">{{ cinema.title }}</h5>
+                        <!-- Cinema Details -->
+                        <p class="card-text"><strong>Description:</strong> {{ cinema.description }}</p>
+                        <p class="card-text"><strong>Release Date:</strong> {{ cinema.release_date }}</p>
+                        <p class="card-text"><strong>Actors:</strong> {{ cinema.actors }}</p>
+                        <p class="card-text"><strong>Category:</strong> {{ cinema.category }}</p>
+                        <!-- Watch Trailer Button -->
+                        <a href="{{ cinema.trailer_link }}" class="btn btn-primary">Watch Trailer</a>
+                        <!-- Rate and Comment Buttons -->
+                        <div class="mt-2">
+                            <a href="{% url 'rate_movie' cinema.id %}" class="btn btn-info">Rate</a>
+                            <a href="{% url 'comment_movie' cinema.id %}" class="btn btn-secondary">Comment</a>
+                        </div>
+                    </div>
+                    <!-- Footer - Added By and Created At -->
+                    <div class="card-footer">
+                        <small class="text-muted"><strong>Added By:</strong> {{ cinema.added_by }}</small>
+                        <small class="text-muted"><strong>Created At:</strong> {{ cinema.created_at }}</small>
+                        <!-- Action Buttons - Update and Delete -->
+                        {% if user.is_authenticated and user == cinema.added_by %}
+                        <div class="action-buttons mt-2">
+                            <form action="{% url 'update_cinema' cinema.id %}" method="GET" style="display: inline-block; margin-right: 10px;">
+                                <button class='btn btn-warning' type="submit">Update</button>
+                            </form>
+                            <form action="{% url 'delete_cinema' cinema.id %}" method="GET" style="display: inline-block;">
+                                {% csrf_token %}
+                                <button class='btn btn-danger' type="submit">Delete</button>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Navigation buttons -->
+        <div class="row">
+            <div class="col-12 text-center mt-3">
+                {% if cinemas.has_previous %}
+                <a href="?page={{ cinemas.previous_page_number }}" class="btn btn-secondary mr-2">Previous</a>
+                {% endif %}
+                {% if cinemas.has_next %}
+                <a href="?page={{ cinemas.next_page_number }}" class="btn btn-secondary">Next</a>
+                {% endif %}
+            </div>
         </div>
     </div>
-</div>
+</body>
+</html>
