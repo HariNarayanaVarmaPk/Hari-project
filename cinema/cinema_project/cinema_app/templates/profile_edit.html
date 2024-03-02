@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'add.css' %}">
+</head>
+<body>
+    <div class="container2">
+        <h1>Edit Profile</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="first_name">First Name:</label><br>
+            <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}"><br>
+            <label for="last_name">Last Name:</label><br>
+            <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}"><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" value="{{ user.email }}"><br>
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>

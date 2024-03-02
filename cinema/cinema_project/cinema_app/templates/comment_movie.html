@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Movie</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'comment.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Comment Movie</h1>
+        <p>Leave a comment for the movie "{{ cinema.title }}" below:</p>
+        <form class="comment-form" method="post">
+            {% csrf_token %}
+            <label for="id_comment">Comment:</label>
+            <textarea class="comment-textarea" name="comment" id="id_comment" rows="4" cols="50" required></textarea>
+            <br>
+            <button class="comment-submit" type="submit">Submit Comment</button>
+        </form>
+    </div>
+</body>
+</html>
+

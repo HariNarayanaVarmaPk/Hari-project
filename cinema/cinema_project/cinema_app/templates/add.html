@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Cinema</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'add.css' %}">
+</head>
+<body>
+    <div class="container2">
+        <h1>Add Cinema</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Cinema</button>
+        </form>
+    </div>
+</body>
+</html>
+

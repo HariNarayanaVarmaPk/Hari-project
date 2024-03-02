@@ -1,0 +1,32 @@
+/* Center the form */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Style form elements */
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style the submit button */
+form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style the submit button on hover */
+form button[type="submit"]:hover {
+    background-color: #0056b3;
+}

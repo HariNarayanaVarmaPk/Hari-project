@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Movie</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'rating.css' %}">
+</head>
+<body>
+    <h1>Rate Movie</h1>
+    <p class="movie-title">Rate the movie "{{ cinema.title }}" below:</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5">
+            <label for="star5">&#9733;</label>
+            <input type="radio" id="star4" name="rating" value="4">
+            <label for="star4">&#9733;</label>
+            <input type="radio" id="star3" name="rating" value="3">
+            <label for="star3">&#9733;</label>
+            <input type="radio" id="star2" name="rating" value="2">
+            <label for="star2">&#9733;</label>
+            <input type="radio" id="star1" name="rating" value="1">
+            <label for="star1">&#9733;</label>
+        </div>
+        <br>
+        <button type="submit">Submit Rating</button>
+    </form>
+</body>
+</html>
+

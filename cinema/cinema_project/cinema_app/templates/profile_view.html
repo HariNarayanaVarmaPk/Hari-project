@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Profile</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'add.css' %}">
+</head>
+<body>
+    <div class="container2">
+        <h1>Profile Information</h1>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>First Name:</strong> {{ user.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <a href="{% url 'edit_profile' %}" class="edit-link">Edit Profile</a>
+    </div>
+</body>
+</html>

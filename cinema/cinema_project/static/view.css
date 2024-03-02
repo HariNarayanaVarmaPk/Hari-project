@@ -1,0 +1,111 @@
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+  }
+  
+  /* Navbar styles */
+  .navbar {
+    background-color: #007bff;
+  }
+  
+  .navbar-brand {
+    color: #ffffff;
+  }
+  
+  .navbar-brand:hover {
+    color: #ffffff;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #ffffff;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #ffffff;
+  }
+  
+  /* Heading style */
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #007bff;
+  }
+  
+  /* Card style */
+  .card {
+    transition: transform 0.3s ease;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    background-color: #ffffff;
+    padding: 20px; /* Added padding to the card body */
+    display: flex;
+    flex-direction: column; /* Ensure children stack vertically */
+    height: 100%; /* Set card height to occupy full height */
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-title {
+    font-weight: bold;
+  }
+  
+  /* Button style */
+  .btn {
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  /* Action buttons style */
+  .action-buttons {
+    margin-top: auto; /* Push action buttons to the bottom */
+    text-align: center;
+  }
+  
+  .action-buttons form {
+    margin-bottom: 10px; /* Add margin between buttons and other content */
+  }
+  
+  /* Update button */
+  .update-btn {
+    margin-right: 5px; /* Add margin between buttons */
+  }
+  
+  /* Delete button */
+  .delete-btn {
+    margin-left: 5px; /* Add margin between buttons */
+  }
+  
+  /* Footer style */
+  footer {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  /* Add margin below each card */
+  .card + .card {
+    margin-top: 20px;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .card {
+      margin-bottom: 30px;
+    }
+  }
+  
