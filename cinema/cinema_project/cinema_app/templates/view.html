@@ -37,6 +37,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'register' %}" style="color:green">Register</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}" style="color:orange">Login</a>
+                </li>
                 <!-- Logout button if authenticated -->
                 {% if user.is_authenticated %}
                 <li class="nav-item">
