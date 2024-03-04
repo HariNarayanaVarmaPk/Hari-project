@@ -1,4 +1,8 @@
 from django.contrib import admin
 from .models import Cinema
+from .forms import CinemaForm, CinemaAdminForm
 
-admin.site.register(Cinema)
+class CinemaAdmin(admin.ModelAdmin):
+    form = CinemaAdminForm
+
+admin.site.register(Cinema, CinemaAdmin)

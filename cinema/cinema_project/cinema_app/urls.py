@@ -16,8 +16,7 @@ urlpatterns = [
     path('cinema/delete/<int:pk>/', views.delete_cinema, name='delete_cinema'), # type: ignore
     path('search/', views.search_by_category, name='search_by_category'),
     path('cinema/<int:cinema_id>/rate/', views.rate_movie, name='rate_movie'),
-    path('cinema/<int:cinema_id>/comment/', views.comment_movie, name='comment_movie')
-
+    path('cinema/<int:cinema_id>/comment/', views.comment_movie, name='comment_movie'),
 ]
 
 

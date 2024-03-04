@@ -20,6 +20,7 @@
         {% endif %}
         
         <form method="post">
+
             {% csrf_token %}
             <label for="username">Username:</label><br>
             <input type="text" id="username" name="username" required><br>
@@ -35,7 +36,6 @@
             <button type="submit">Register</button>
         </form>
         
-
         <p><strong>Already registered?</strong> <a href="{% url 'login' %}">Login</a></p>
     </div>
 </body>

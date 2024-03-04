@@ -5,8 +5,9 @@ from django .contrib.auth import logout as auth_logout
 from django.shortcuts import render, redirect,get_object_or_404
 from .forms import CinemaForm
 from django.contrib.auth.models import User
-from .  models import Cinema
+from .models import Cinema
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -54,18 +55,17 @@ def login(request):
             return redirect('view')
     else:
         form = AuthenticationForm()
-        
-    
     storage = messages.get_messages(request)
     for message in storage:
         pass
-    
     return render(request, 'login.html', {'form': form})
+
+
 
 def logout(request):
     auth_logout(request)
-    
     return redirect('register')
+
 
 
 def view_profile(request):
@@ -87,32 +87,30 @@ def edit_profile(request):
     return render(request, 'profile_edit.html', {'user': user})
 
 
-
 def add(request):
     if request.method == 'POST':
         form = CinemaForm(request.POST, request.FILES)
         if form.is_valid():
             cinema = form.save(commit=False)
-            cinema.added_by = request.user  
+            cinema.added_by = request.user
             cinema.save()
-            return redirect('view') 
+            category = form.cleaned_data['category']
+            return redirect('view')
     else:
         form = CinemaForm()
-    return render(request, 'add.html', {'form': form})
-
+        categories = Cinema.objects.values_list('category', flat=True).distinct() 
+    return render(request, 'add.html', {'form': form, 'categories': categories})
 
 
 def view(request):
     cinemas_list = Cinema.objects.all()
-    paginator = Paginator(cinemas_list, 5) 
-
+    paginator = Paginator(cinemas_list, 6) 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
     categories = Cinema.objects.values_list('category', flat=True).distinct()
 
-    return render(request, 'view.html', {'cinemas': page_obj ,'categories': categories})
-
+    return render(request, 'view.html', {'cinemas': page_obj, 'categories': categories})
 
 
 def update_cinema(request, pk):
